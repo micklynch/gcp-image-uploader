@@ -1,13 +1,18 @@
 <template>
   <div id="app">
     <p>Welcome to the image uploader</p>
+    <ImageUpload />
   </div>
 </template>
 
 <script>
+import ImageUpload from '@/components/ImageUpload.vue'
 
 export default {
   name: 'app',
+  components: {
+    ImageUpload
+  }
 }
 </script>
 
