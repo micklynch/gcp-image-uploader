@@ -6,6 +6,8 @@
 
 <script>
 
+import db from '@/util/db.js'
+
 export default {
     name: 'ImageUpload',
     data () {
@@ -16,8 +18,8 @@ export default {
     methods: {
         onFileSelected (event) {            
             this.selectedFile = event.target.files[0]
-            this.$firestore.images.add({
-                name: this.selectedFile.name
+            db.collection('image-store').add({
+                name: event.target.value
             })
         },
     }
