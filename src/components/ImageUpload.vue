@@ -1,29 +1,43 @@
 <template>
   <div>
-    <input type="file" @change="onFileSelected">
+    <input v-model="name" placeholder="Enter a name"><button @click="onNameSave">Save</button>
+    <br>
+    <li v-for="(n, index) in names" v-bind:key="index">
+      {{n.name}}
+    </li>
+    <!-- <button @click="login">Login</button> -->
   </div>
 </template>
 
 <script>
-import db from "@/util/db.js";
+import {db, login} from "@/util/db.js";
+
 
 export default {
   name: "ImageUpload",
   data() {
     return {
-      selectedFile: null
+      names: [],
+      name: ''
     };
   },
   methods: {
-    onFileSelected(event) {
-      this.selectedFile = event.target.files[0];
-      db.collection('image-store').add({
-          name: this.selectedFile.name
+    onNameSave() {
+      db.collection('names').add({
+          name: this.name
       })
+      this.name = ''
+    },
+    login() {
+        login.signInWithEmailAndPassword('mick@email.com', 'testtest').then((user) => {
+         console.log(user.user.email)
+        }).catch((err) => {
+          alert(err.message)
+        })
     }
   },
-  firestore: {
-
+ firestore:  {
+     names: db.collection('names')  
   }
 };
 </script>
