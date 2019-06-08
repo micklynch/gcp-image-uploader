@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <p>Welcome to the image uploader</p>
+    <p>Welcome to the name saver</p>
     <ImageUpload />
   </div>
 </template>
